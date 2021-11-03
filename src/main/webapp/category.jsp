@@ -132,7 +132,7 @@
 							<ul id="userinfo" class="iq-submenu collapse"
 								data-parent="#iq-sidebar-toggle">
 								<li><a href="mypage.jsp"><i class="fi-rr-user"></i>마이페이지</a></li>
-								<li><a href="wishlist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
+								<li><a href="mylist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
 							</ul></li>
 						<%} %>
                </nav>
@@ -175,8 +175,8 @@
                   </div>
                   <!-- 웹 버전 검색 엔진 -->
                   <div class="iq-search-bar">
-                     <form action="#" class="searchbox">
-                        <input type="text" class="text search-input" placeholder="검색하시오">
+                     <form action="searchProgram" class="searchbox">
+                        <input type="text" class="text search-input" placeholder="검색" name="text">
                         <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
                      </form>
                   </div>
@@ -191,8 +191,8 @@
                               <i class="fi-rr-search"></i>
                            </a>
                            <!-- 모바일버전 검색 -->
-                           <form action="#" class="search-box p-0">
-                              <input type="text" class="text search-input" placeholder="검색창">
+                           <form action="searchProgram" class="search-box p-0">
+                              <input type="text" class="text search-input" placeholder="검색창" name="text">
                               <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
                            </form>
                         </li>
@@ -400,52 +400,48 @@
                            </div>
                         </li>
                         <li class="line-height pt-3">
-                           <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                              <div class="caption">
-                                 <%if(singledto !=null){ %>
-										<h6 class="mb-1 line-height"><%=singledto.getName() %> 님</h6>
-										<p class="mb-0 text-primary">환영합니다</p>
+                           <%if(singledto ==null){ %>
+									<a href="login.jsp" class="search-toggle iq-waves-effect d-flex align-items-center">
+									   	<div class="caption">
+											<h6 class="mb-1 line-height">로그인</h6>
+											<p class="mb-0 text-primary">로그인하세요</p>
+										</div>
+									</a>
 									<%}else{ %>
-										<h6 class="mb-1 line-height">로그인</h6>
-										<p class="mb-0 text-primary">로그인하세요</p>
-									<%} %>
-                              </div>
-                           </a>
-                           <div class="iq-sub-dropdown iq-user-dropdown">
-                              <div class="iq-card shadow-none m-0">
-                                 <div class="iq-card-body p-0 ">
-                                    <div class="bg-primary p-3">
-                                       <h5 class="mb-0 text-white line-height">자기소개</h5>
-                                       <span class="text-white font-size-12">어드민</span>
-                                    </div>
-                                    <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
-                                       <div class="media align-items-center">
-                                          <div class="rounded iq-card-icon iq-bg-primary">
-                                             <i class="fi-rr-user"></i>
-                                          </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">프로필</h6>
-                                             <p class="mb-0 font-size-12">View personal profile details.</p>
-                                          </div>
-                                       </div>
-                                    </a>
-                                    <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-hover">
-                                       <div class="media align-items-center">
-                                          <div class="rounded iq-card-icon iq-bg-primary">
-                                             <i class="fi-rr-user-remove"></i>
-                                          </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">정보 수정</h6>
-                                             <p class="mb-0 font-size-12">Modify your personal details.</p>
-                                          </div>
-                                       </div>
-                                    </a>
-                                    <div class="d-inline-block w-100 text-center p-3">
-                                       <a class="bg-primary iq-sign-btn" href="sign-in.html" role="button">로그아웃</a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+									<a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+									   	<div class="caption">	
+											<h6 class="mb-1 line-height"><%=singledto.getName() %> 님</h6>
+											<p class="mb-0 text-primary">환영합니다</p>
+										</div>
+									</a>
+									
+								<div class="iq-sub-dropdown iq-user-dropdown">
+									<div class="iq-card shadow-none m-0">
+										<div class="iq-card-body p-0 ">
+											<div class="bg-primary p-3">
+												<h5 class="mb-0 text-white line-height">자기소개</h5>
+												<span class="text-white font-size-12">사용자</span>
+											</div>
+											 <a href="profile-edit.jsp"
+												class="iq-sub-card iq-bg-primary-hover">
+												<div class="media align-items-center">
+													<div class="rounded iq-card-icon iq-bg-primary">
+														<i class="fi-rr-user-remove"></i>
+													</div>
+													<div class="media-body ml-3">
+														<h6 class="mb-0 ">정보 수정</h6>
+														<p class="mb-0 font-size-12">Modify your personal details.</p>
+													</div>
+												</div>
+											</a>
+											<div class="d-inline-block w-100 text-center p-3">
+												<a class="bg-primary iq-sign-btn" href="logoutProgram"
+													role="button">로그아웃</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<%} %>
                         </li>
                      </ul>
                   </div>
@@ -508,7 +504,7 @@
                                </li>
                                <li class="search-menu-opt">
                                   <div class="iq-search-bar search-book d-flex align-items-center">
-                                     <form action="#" class="searchbox">
+                                     <form action="" class="searchbox">
                                         <input type="text" class="text search-input" placeholder="분야내 검색">
                                         <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
                                      </form>

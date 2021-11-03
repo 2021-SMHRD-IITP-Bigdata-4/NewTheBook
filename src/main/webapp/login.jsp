@@ -35,7 +35,7 @@
                     <img src="images/logo.png" class="img-fluid rounded-normal" alt="">
                     <div class="logo-title">
                         <!-- 로고 이름 -->
-                        <span class="text-primary text-uppercase">Logo</span>
+                        <span class="text-primary text-uppercase">thebook</span>
                     </div>
                 </a>
                 <div class="iq-menu-bt-sidebar">
@@ -58,7 +58,6 @@
                             <ul id="dashboard" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                                 <li class="active"><a href="index.html"><i class="fi-rr-home"></i>메인 페이지</a></li>
                                 <li><a href="category.jsp"><i class="fi-rr-comment-alt"></i>카테고리 페이지</a></li>
-                                <li><a href="wishlist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
                                 <li><a href="login.jsp"><i class="fi-rr-power"></i>로그인</a></li>
                                 <!-- if 문 추가 -->
                                 <li><a href="join.jsp"><i class="fi-rr-power"></i>회원가입</a></li>
@@ -90,7 +89,7 @@
                             <a href="index.jsp" class="header-logo">
                                 <img src="images/logo.png" class="img-fluid rounded-normal" alt="">
                                 <div class="logo-title">
-                                    <span class="text-primary text-uppercase">Booksto</span>
+                                    <span class="text-primary text-uppercase">the book</span>
                                 </div>
                             </a>
                         </div>
@@ -105,11 +104,11 @@
                     </div>
                     <!-- 웹 버전 검색 엔진 -->
                     <div class="iq-search-bar">
-                        <form action="#" class="searchbox">
-                            <input type="text" class="text search-input" placeholder="검색해">
-                            <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
-                        </form>
-                    </div>
+						<form action="searchProgram" class="searchbox">
+							<input type="text" class="text search-input" placeholder="검색" name="text">
+							<a class="search-link" href="#"><i class="fi-rr-search"></i></a>
+						</form>
+					</div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-label="Toggle navigation">
@@ -123,8 +122,8 @@
                                     <i class="fi-rr-search"></i>
                                 </a>
                                 <!-- 모바일버전 검색 -->
-                                <form action="#" class="search-box p-0">
-                                    <input type="text" class="text search-input" placeholder="검색창이올시다">
+                                <form action="searchProgram" class="search-box p-0">
+                                    <input type="text" class="text search-input" placeholder="검색창" name="text">
                                     <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
                                 </form>
                             </li>

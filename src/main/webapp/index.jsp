@@ -45,7 +45,7 @@
 	}
 	
 	Random ran = new Random();
-	int bestint = ran.nextInt(5)+1;
+	int bestint = ran.nextInt(20)+1;
 	
 	System.out.println(bestint);
 	%>
@@ -95,6 +95,7 @@
 										class="fi-rr-home"></i>메인 페이지</a></li>
 								<li><a href="category.jsp"><i class="fi-rr-comment-alt"></i>카테고리
 										페이지</a></li>
+								<li><a href="chatbot.jsp"><i class="fi-rr-comment-alt"></i>챗봇 더부기</a></li>
 								<%if(singledto == null ){ %>
 								<li><a href="login.jsp"><i class="fi-rr-power"></i>로그인</a></li>
 								<!-- if 문 추가 -->
@@ -134,7 +135,7 @@
 							<ul id="userinfo" class="iq-submenu collapse"
 								data-parent="#iq-sidebar-toggle">
 								<li><a href="mypage.jsp"><i class="fi-rr-user"></i>마이페이지</a></li>
-								<li><a href="wishlist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
+								<li><a href="mylist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
 							</ul></li>
 						<%} %>
 					</ul>
@@ -182,7 +183,7 @@
 					<!-- 웹 버전 검색 엔진 -->
 					<div class="iq-search-bar">
 						<form action="searchProgram" class="searchbox">
-							<input type="text" class="text search-input" placeholder="검색해">
+							<input type="text" class="text search-input" placeholder="검색" name="text">
 							<a class="search-link" href="#"><i class="fi-rr-search"></i></a>
 						</form>
 					</div>
@@ -192,6 +193,7 @@
 						aria-label="Toggle navigation">
 						<i class="fi-rr-user"></i>
 					</button>
+					
 					<!-- 모바일 버전 검색 엔진 -->
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-auto navbar-list">
@@ -199,9 +201,9 @@
 								class="search-toggle iq-waves-effect text-gray rounded"> <i
 									class="fi-rr-search"></i>
 							</a> <!-- 모바일버전 검색 -->
-								<form action="#" class="search-box p-0">
+								<form action="searchProgram" class="search-box p-0">
 									<input type="text" class="text search-input"
-										placeholder="검색창이올시다"> <a class="search-link" href="#"><i
+										placeholder="검색" name="text"> <a class="search-link" href="#"><i
 										class="fi-rr-search"></i></a>
 								</form></li>
 							<li class="nav-item nav-icon"><a href="#"
@@ -213,7 +215,7 @@
 										<div class="iq-card-body p-0">
 											<div class="bg-primary p-3">
 												<h5 class="mb-0 text-white">
-													알림<small class="badge  badge-light float-right pt-1">4</small>
+													알림<small class="badge  badge-light float-right pt-1"></small>
 												</h5>
 											</div>
 											<!-- 알림 리스트 -->
@@ -226,41 +228,6 @@
 														<h6 class="mb-0 ">Emma Watson Barry</h6>
 														<small class="float-right font-size-12">Just Now</small>
 														<p class="mb-0">95 MB</p>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/02.jpg">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">New customer is join</h6>
-														<small class="float-right font-size-12">5 days ago</small>
-														<p class="mb-0">Cyst Barry</p>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/03.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Two customer is left</h6>
-														<small class="float-right font-size-12">2 days ago</small>
-														<p class="mb-0">Cyst Barry</p>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/04.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">New Mail from Fenny</h6>
-														<small class="float-right font-size-12">3 days ago</small>
-														<p class="mb-0">Cyst Barry</p>
 													</div>
 												</div>
 											</a>
@@ -276,7 +243,7 @@
 										<div class="iq-card-body p-0 ">
 											<div class="bg-primary p-3">
 												<h5 class="mb-0 text-white">
-													메세지<small class="badge  badge-light float-right pt-1">5</small>
+													메세지<small class="badge  badge-light float-right pt-1">1</small>
 												</h5>
 											</div>
 											<!-- 메세지 리스트 -->
@@ -289,50 +256,6 @@
 													<div class="media-body ml-3">
 														<h6 class="mb-0 ">Barry Emma Watson</h6>
 														<small class="float-left font-size-12">13 Jun</small>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/02.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Lorem Ipsum Watson</h6>
-														<small class="float-left font-size-12">20 Apr</small>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/03.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Why do we use it?</h6>
-														<small class="float-left font-size-12">30 Jun</small>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/04.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Variations Passages</h6>
-														<small class="float-left font-size-12">12 Sep</small>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="./images/user/05.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Lorem Ipsum generators</h6>
-														<small class="float-left font-size-12">5 Dec</small>
 													</div>
 												</div>
 											</a>
@@ -416,18 +339,23 @@
 										</div>
 									</div>
 								</div></li>
-							<li class="line-height pt-3"><a href="#"
-								class="search-toggle iq-waves-effect d-flex align-items-center">
-									<div class="caption">
-									<%if(singledto !=null){ %>
-										<h6 class="mb-1 line-height"><%=singledto.getName() %> 님</h6>
-										<p class="mb-0 text-primary">환영합니다</p>
+							<li class="line-height pt-3">
+							
+									<%if(singledto ==null){ %>
+									<a href="login.jsp" class="search-toggle iq-waves-effect d-flex align-items-center">
+									   	<div class="caption">
+											<h6 class="mb-1 line-height">로그인</h6>
+											<p class="mb-0 text-primary">로그인하세요</p>
+										</div>
+									</a>
 									<%}else{ %>
-										<h6 class="mb-1 line-height">로그인</h6>
-										<p class="mb-0 text-primary">로그인하세요</p>
-									<%} %>
-									</div>
-							</a>
+									<a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+									   	<div class="caption">	
+											<h6 class="mb-1 line-height"><%=singledto.getName() %> 님</h6>
+											<p class="mb-0 text-primary">환영합니다</p>
+										</div>
+									</a>
+									
 								<div class="iq-sub-dropdown iq-user-dropdown">
 									<div class="iq-card shadow-none m-0">
 										<div class="iq-card-body p-0 ">
@@ -435,18 +363,7 @@
 												<h5 class="mb-0 text-white line-height">자기소개</h5>
 												<span class="text-white font-size-12">사용자</span>
 											</div>
-											<a href="profile.jsp" class="iq-sub-card iq-bg-primary-hover">
-												<div class="media align-items-center">
-													<div class="rounded iq-card-icon iq-bg-primary">
-														<i class="fi-rr-user"></i>
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">프로필</h6>
-														<p class="mb-0 font-size-12">View personal profile
-															details.</p>
-													</div>
-												</div>
-											</a> <a href="profile-edit.jsp"
+											 <a href="profile-edit.jsp"
 												class="iq-sub-card iq-bg-primary-hover">
 												<div class="media align-items-center">
 													<div class="rounded iq-card-icon iq-bg-primary">
@@ -454,8 +371,7 @@
 													</div>
 													<div class="media-body ml-3">
 														<h6 class="mb-0 ">정보 수정</h6>
-														<p class="mb-0 font-size-12">Modify your personal
-															details.</p>
+														<p class="mb-0 font-size-12">Modify your personal details.</p>
 													</div>
 												</div>
 											</a>
@@ -465,7 +381,9 @@
 											</div>
 										</div>
 									</div>
-								</div></li>
+								</div>
+								<%} %>
+							</li>
 						</ul>
 					</div>
 				</nav>
@@ -586,7 +504,7 @@
 							</div>
 							<div class="iq-card-body favorites-contens">
 								<ul id="favorites-slider" class="list-inline p-0 mb-0 row">
-									<%for(int i=bestint+40; i<=bestint+42;i++){ %>
+									<%for(int i=bestint+20; i<=bestint+22;i++){ %>
 									<li class="col-md-4">
 										<div class="d-flex align-items-center">
 											<div class="col-5 p-0 position-relative">

@@ -138,7 +138,7 @@
                         <ul id="userinfo" class="iq-submenu collapse"
 								data-parent="#iq-sidebar-toggle">
 								<li><a href="mypage.jsp"><i class="fi-rr-user"></i>마이페이지</a></li>
-								<li><a href="wishlist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
+								<li><a href="mylist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
 						</ul>
                      </li>
                      <%} %>
@@ -181,13 +181,13 @@
                         </ul>
                      </nav>
                   </div>
-                  <!-- 웹 버전 검색 엔진 -->
+                  <!-- 웹 버전   엔진 -->
                   <div class="iq-search-bar">
-                     <form action="#" class="searchbox">
-                        <input type="text" class="text search-input" placeholder="원하는 도서를 검색하세요">
-                        <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
-                     </form>
-                  </div>
+						<form action="searchProgram" class="searchbox">
+							<input type="text" class="text search-input" placeholder="검색" name="text">
+							<a class="search-link" href="#"><i class="fi-rr-search"></i></a>
+						</form>
+					</div>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-label="Toggle navigation">
                   <i class="fi-rr-user"></i>
                   </button>
@@ -199,8 +199,8 @@
                               <i class="fi-rr-search"></i>
                            </a>
                            <!-- 모바일버전 검색 -->
-                           <form action="#" class="search-box p-0">
-                              <input type="text" class="text search-input" placeholder="검색창">
+                           <form action="searchProgram" class="search-box p-0">
+                              <input type="text" class="text search-input" placeholder="검색창" name = "text">
                               <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
                            </form>
                         </li>
@@ -408,30 +408,48 @@
                            </div>
                         </li>
                         <li class="line-height pt-3">
-                           <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                              <div class="caption">
-                                 <%if(singledto !=null){ %>
-										<h6 class="mb-1 line-height"><%=singledto.getName() %> 님</h6>
-										<p class="mb-0 text-primary">환영합니다</p>
+                           <%if(singledto ==null){ %>
+									<a href="login.jsp" class="search-toggle iq-waves-effect d-flex align-items-center">
+									   	<div class="caption">
+											<h6 class="mb-1 line-height">로그인</h6>
+											<p class="mb-0 text-primary">로그인하세요</p>
+										</div>
+									</a>
 									<%}else{ %>
-										<h6 class="mb-1 line-height">로그인</h6>
-										<p class="mb-0 text-primary">로그인하세요</p>
-									<%} %>
-                              </div>
-                           </a>
-                           <div class="iq-sub-dropdown iq-user-dropdown">
-                              <div class="iq-card shadow-none m-0">
-                                 <div class="iq-card-body p-0 ">
-                                    <div class="bg-primary p-3">
-                                       <h5 class="mb-0 text-white line-height">THE BOOK</h5>
-                                       <span class="text-white font-size-12">환영합니다</span>
-                                    </div>
-                                    <div class="d-inline-block w-100 text-center p-3">
-                                       <a class="bg-primary iq-sign-btn" href="logoutProgram" role="button">로그아웃</a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+									<a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+									   	<div class="caption">	
+											<h6 class="mb-1 line-height"><%=singledto.getName() %> 님</h6>
+											<p class="mb-0 text-primary">환영합니다</p>
+										</div>
+									</a>
+									
+								<div class="iq-sub-dropdown iq-user-dropdown">
+									<div class="iq-card shadow-none m-0">
+										<div class="iq-card-body p-0 ">
+											<div class="bg-primary p-3">
+												<h5 class="mb-0 text-white line-height">자기소개</h5>
+												<span class="text-white font-size-12">사용자</span>
+											</div>
+											 <a href="profile-edit.jsp"
+												class="iq-sub-card iq-bg-primary-hover">
+												<div class="media align-items-center">
+													<div class="rounded iq-card-icon iq-bg-primary">
+														<i class="fi-rr-user-remove"></i>
+													</div>
+													<div class="media-body ml-3">
+														<h6 class="mb-0 ">정보 수정</h6>
+														<p class="mb-0 font-size-12">Modify your personal details.</p>
+													</div>
+												</div>
+											</a>
+											<div class="d-inline-block w-100 text-center p-3">
+												<a class="bg-primary iq-sign-btn" href="logoutProgram"
+													role="button">로그아웃</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<%} %>
                         </li>
                      </ul>
                   </div>
@@ -476,7 +494,13 @@
                                       <div class="text-primary mb-4">작 가 : <span class="text-body"><%=bp.getAuthor()%></span></div>
                                       <div class="mb-4 d-flex align-items-center">                                       
                                          <a href="<%=bp.getBook_link()%>" class="btn btn-primary view-more mr-2">구매하기</a>
-                                         <a href="#" class="btn btn-primary view-more mr-2">위시리스트 등록</a>
+                                         <% if(singledto != null) {
+															%>
+                                         <a href="saveProgram?num=<%=bp.getSeq()%>&id=<%=singledto.getEmail()%>" class="btn btn-primary view-more mr-2">위시리스트 등록</a>
+                                         <%}else{ %>
+                                         <a href="login.jsp" class="ml-2"><i
+																class="fi-rr-heart"></i></a>
+															<%} %>
                                       </div>
                                    </div>
                                 </div>

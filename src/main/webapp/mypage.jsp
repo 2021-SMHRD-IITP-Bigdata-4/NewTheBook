@@ -84,7 +84,6 @@
                             <ul id="dashboard" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                                 <li class="active"><a href="index.jsp"><i class="fi-rr-home"></i>메인 페이지</a></li>
                                 <li><a href="category.jsp"><i class="fi-rr-comment-alt"></i>카테고리 페이지</a></li>
-                                <li><a href="wishlist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
                                 <%if(singledto == null ){ %>
 								<li><a href="login.jsp"><i class="fi-rr-power"></i>로그인</a></li>
 								<!-- if 문 추가 -->
@@ -101,6 +100,7 @@
                             <ul id="userinfo" class="iq-submenu collapse"
 								data-parent="#iq-sidebar-toggle">
 								<li><a href="mypage.jsp"><i class="fi-rr-user"></i>마이페이지</a></li>
+								<li><a href="mylist.jsp"><i class="fi-rr-comment-heart"></i>위시리스트</a></li>
 						</ul>
                         </li>
                     </ul>
@@ -144,11 +144,11 @@
                     </div>
                     <!-- 웹 버전 검색 엔진 -->
                     <div class="iq-search-bar">
-                        <form action="#" class="searchbox">
-                            <input type="text" class="text search-input" placeholder="검색해ㅐㅐㅐ">
-                            <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
-                        </form>
-                    </div>
+						<form action="searchProgram" class="searchbox">
+							<input type="text" class="text search-input" placeholder="검색" name="text">
+							<a class="search-link" href="#"><i class="fi-rr-search"></i></a>
+						</form>
+					</div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-label="Toggle navigation">
@@ -162,8 +162,8 @@
                                     <i class="fi-rr-search"></i>
                                 </a>
                                 <!-- 모바일버전 검색 -->
-                                <form action="#" class="search-box p-0">
-                                    <input type="text" class="text search-input" placeholder="검색창이올시다">
+                                <form action="searchProgram" class="search-box p-0">
+                                    <input type="text" class="text search-input" placeholder="검색창" name="text">
                                     <a class="search-link" href="#"><i class="fi-rr-search"></i></a>
                                 </form>
                             </li>
